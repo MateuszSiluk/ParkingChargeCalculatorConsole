@@ -1,4 +1,4 @@
-﻿namespace ParkingChargeCalculator
+﻿namespace ParkingChargeCalculator.Data
 {
     public static class PriceList
     {

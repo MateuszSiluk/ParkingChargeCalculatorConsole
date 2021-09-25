@@ -5,7 +5,9 @@ using ParkingChargeCalculatorConsole;
 
 var serviceProvider = new ServiceCollection()
                         .AddScoped<App>()
-                        .AddTransient<ILongStayParking, LongStayParking>()
+                        .AddSingleton<ILongStayParking, LongStayParking>()
+                        .AddSingleton<IShortStayParking, ShortStayParking>()
+                        .AddSingleton<IFreeParkingCheck, FreeParkingCheck>()
                         .BuildServiceProvider();
 
 serviceProvider.GetService<App>()?.Run();
