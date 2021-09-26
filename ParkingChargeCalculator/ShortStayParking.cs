@@ -18,7 +18,7 @@ namespace ParkingChargeCalculator
 
             for (DateTime date = start; date < end; date = date.AddMinutes(1))
             {
-                if (_freeParkingCheck.IsFreeParking(date))
+                if (_freeParkingCheck.IsNotFreeParking(date))
                 {
                     totalMinutes++;
                 }

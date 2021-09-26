@@ -5,7 +5,7 @@ namespace ParkingChargeCalculator
 {
     public class FreeParkingCheck : IFreeParkingCheck
     {
-        public bool IsFreeParking(DateTime dateTime)
+        public bool IsNotFreeParking(DateTime dateTime)
         {
             if (dateTime.TimeOfDay < FreeParkingDaysTime.startTime.ToTimeSpan() &&
                     dateTime.TimeOfDay > FreeParkingDaysTime.stopTime.ToTimeSpan())

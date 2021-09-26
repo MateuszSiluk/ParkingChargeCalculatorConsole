@@ -3,12 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingChargeCalculatorConsole", "ParkingChargeCalculatorConsole\ParkingChargeCalculatorConsole.csproj", "{130E92FF-ABCA-459D-86C5-0C92F34D077C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkingChargeCalculatorConsole", "ParkingChargeCalculatorConsole\ParkingChargeCalculatorConsole.csproj", "{130E92FF-ABCA-459D-86C5-0C92F34D077C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{1A92F693-FC1D-4F86-BA63-4E5BA2EFA30D} = {1A92F693-FC1D-4F86-BA63-4E5BA2EFA30D}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingChargeCalculator", "ParkingChargeCalculator\ParkingChargeCalculator.csproj", "{1A92F693-FC1D-4F86-BA63-4E5BA2EFA30D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ParkingChargeCalculator", "ParkingChargeCalculator\ParkingChargeCalculator.csproj", "{1A92F693-FC1D-4F86-BA63-4E5BA2EFA30D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingChargeCalculator.Tests", "ParkingChargeCalculator.Tests\ParkingChargeCalculator.Tests.csproj", "{60CF79B8-1992-42D2-B0C8-693B4DEAA2E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +26,10 @@ Global
 		{1A92F693-FC1D-4F86-BA63-4E5BA2EFA30D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A92F693-FC1D-4F86-BA63-4E5BA2EFA30D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A92F693-FC1D-4F86-BA63-4E5BA2EFA30D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60CF79B8-1992-42D2-B0C8-693B4DEAA2E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60CF79B8-1992-42D2-B0C8-693B4DEAA2E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60CF79B8-1992-42D2-B0C8-693B4DEAA2E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60CF79B8-1992-42D2-B0C8-693B4DEAA2E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

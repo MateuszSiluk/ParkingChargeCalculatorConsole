@@ -2,6 +2,6 @@
 {
     public interface IFreeParkingCheck
     {
-        bool IsFreeParking(DateTime dateTime);
+        bool IsNotFreeParking(DateTime dateTime);
     }
 }
