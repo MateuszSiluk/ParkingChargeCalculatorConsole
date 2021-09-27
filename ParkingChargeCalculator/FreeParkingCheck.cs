@@ -7,13 +7,13 @@ namespace ParkingChargeCalculator
     {
         public bool IsNotFreeParking(DateTime dateTime)
         {
-            if (dateTime.TimeOfDay < FreeParkingDaysTime.startTime.ToTimeSpan() &&
+            if (FreeParkingDaysTime.days.Contains(dateTime.DayOfWeek.ToString()))
+            {
+                return false;
+            }
+            else if (dateTime.TimeOfDay < FreeParkingDaysTime.startTime.ToTimeSpan() &&
                     dateTime.TimeOfDay > FreeParkingDaysTime.stopTime.ToTimeSpan())
             {
-                if (FreeParkingDaysTime.days.Contains(dateTime.DayOfWeek.ToString()))
-                {
-                    return false;
-                }
                 return true;
             }
             return false;

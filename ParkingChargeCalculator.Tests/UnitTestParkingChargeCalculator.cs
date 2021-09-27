@@ -34,26 +34,33 @@ namespace ParkingChargeCalculator.Tests
         }
 
         [Fact]
-        public void Is_Not_Free_Parking_In_the_Mon_to_Fri()
+        public void Is_Not_Free_Parking_In_Mon_At_12_30()
         {
             DateTime date = new DateTime(2021, 09, 27, 12, 30, 00);
-            var mock = new Mock<IFreeParkingCheck>();
-            mock.Setup(x => x.IsNotFreeParking(date));
+            var parking = new FreeParkingCheck();
+            
 
-            var actual = mock.Object.IsNotFreeParking(It.IsAny<DateTime>());
-
-            Assert.False(actual);
+            Assert.True(parking.IsNotFreeParking(date));
         }
+        [Fact]
+        public void Is_Free_Parking_In_Mon_At_18_30()
+        {
+            DateTime date = new DateTime(2021, 09, 27, 18, 30, 00);
+            var parking = new FreeParkingCheck(); 
+            
+
+            Assert.False(parking.IsNotFreeParking(date));
+        }
+
         [Fact]
         public void Is_Free_Parking_In_the_Weekend()
         {
             DateTime date = new DateTime(2021, 09, 25, 12, 30, 00);
-            var mock = new Mock<IFreeParkingCheck>();
-            mock.Setup(x => x.IsNotFreeParking(date));
+            var parking = new FreeParkingCheck();
 
-            var actual = mock.Object.IsNotFreeParking(date);
 
-            Assert.False(actual);
+            Assert.False(parking.IsNotFreeParking(date));
+
         }
     }
 }
