@@ -14,6 +14,11 @@ namespace ParkingChargeCalculator
         }
         public decimal Calculate(DateTime start, DateTime end)
         {
+            if (start>end)
+            {
+                throw new ArgumentException(String.Format($"Start date can't be earlier than end date!"));
+            }
+
             decimal totalMinutes = 0;
 
             for (DateTime date = start; date < end; date = date.AddMinutes(1))
