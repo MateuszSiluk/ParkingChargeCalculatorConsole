@@ -39,7 +39,7 @@ namespace ParkingChargeCalculator.Tests
 
         [Theory]
         [InlineData(5,2)]
-        public void Short_Stay_Start_Date_B4_End_date_Should_Have_Exception(int day1, int day2)
+        public void Calculate_should_throw_exception_when_start_date_is_before_end_date(int day1, int day2)
         {
             // Arrange
             var startDate = new DateTime(2021, 09, day1, 00, 00, 0);
