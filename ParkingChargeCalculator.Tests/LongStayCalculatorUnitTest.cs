@@ -5,13 +5,6 @@ namespace ParkingChargeCalculator.Tests
 {
     public class LongStayCalculatorUnitTest
     {
-        private readonly LongStayParking _longStayParking;
-
-        public LongStayCalculatorUnitTest()
-        {
-            _longStayParking = new LongStayParking();
-        }
-
         [Theory]
         [InlineData(1,7.50)]
         [InlineData(2, 15)]
@@ -23,7 +16,7 @@ namespace ParkingChargeCalculator.Tests
             var endDate = new DateTime(2021, 09, 1 * day , 23, 59, 59);
             var expected = exp;
             //Act
-            var actual = _longStayParking.Calculate(startDate, endDate);
+            var actual = ParkingService.LongStayCalculate(startDate, endDate);
 
             //Assert
             Assert.Equal(expected, actual);
@@ -40,7 +33,7 @@ namespace ParkingChargeCalculator.Tests
             var startDate = new DateTime(2021, 09, 1, 8, 20, 0);
             var endDate = new DateTime(2021, 09, 1 , hours, minutes ,0 );
             //Act
-            var actual = _longStayParking.Calculate(startDate, endDate);
+            var actual = ParkingService.LongStayCalculate(startDate, endDate);
 
             //Assert
             Assert.Equal(expected, actual);
@@ -55,7 +48,7 @@ namespace ParkingChargeCalculator.Tests
             var endDate = new DateTime(2021, 09, day2, 00, 00, 00);
 
             // Act
-            Action actual = () => _longStayParking.Calculate(startDate, endDate);
+            Action actual = () => ParkingService.LongStayCalculate(startDate, endDate);
 
             // Assert
             ArgumentException exception = Assert.Throws<ArgumentException>(actual);

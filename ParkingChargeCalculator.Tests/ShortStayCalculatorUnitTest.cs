@@ -1,5 +1,4 @@
 using Moq;
-using ParkingChargeCalculator.Interfaces;
 using System;
 using Xunit;
 
@@ -8,14 +7,6 @@ namespace ParkingChargeCalculator.Tests
 
     public class ShortStayCalculatorUnitTest
     {
-        private readonly FreeParkingCheck _freeParkingCheck;
-        private readonly ShortStayParking _shortStayParking;
-
-        public ShortStayCalculatorUnitTest()
-        {
-            _freeParkingCheck = new FreeParkingCheck();
-            _shortStayParking = new ShortStayParking(_freeParkingCheck);
-        }
         public static readonly object[][] CorrectData =
         {
             new object[] {  new DateTime(2019, 09, 09, 16, 50, 00), new DateTime(2019, 09, 09, 17, 50, 00), 1.10m },
@@ -31,7 +22,7 @@ namespace ParkingChargeCalculator.Tests
         {
 
             // Act
-            var actual = _shortStayParking.Calculate(value1, value2);
+            var actual = ParkingService.ShortStayCalculate(value1, value2);
 
             // Assert
             Assert.Equal(expected, actual);
@@ -46,7 +37,7 @@ namespace ParkingChargeCalculator.Tests
             var endDate = new DateTime(2021, 09, day2, 00, 00, 00);
 
             // Act
-            Action actual= () => _shortStayParking.Calculate(startDate, endDate);
+            Action actual= () => ParkingService.ShortStayCalculate(startDate, endDate);
 
             // Assert
             ArgumentException exception = Assert.Throws<ArgumentException>(actual);
@@ -66,7 +57,7 @@ namespace ParkingChargeCalculator.Tests
             var endDate = new DateTime(2021, 09, 28, hour2, 00, 0);
             
             // Act
-            var actual = _shortStayParking.Calculate(startDate, endDate);
+            var actual = ParkingService.ShortStayCalculate(startDate, endDate);
 
             // Assert
             Assert.Equal(expected, actual);
@@ -83,7 +74,7 @@ namespace ParkingChargeCalculator.Tests
             var endDate = new DateTime(2021, 09, 28, 10, minutes2 , 0);
 
             // Act
-            var actual = _shortStayParking.Calculate(startDate, endDate);
+            var actual = ParkingService.ShortStayCalculate(startDate, endDate);
 
             // Assert
             Assert.Equal(expected, actual);
@@ -99,7 +90,7 @@ namespace ParkingChargeCalculator.Tests
             var endDate = new DateTime(2021, 09, 28, hours2, minutes2, 0);
 
             // Act
-            var actual = _shortStayParking.Calculate(startDate, endDate);
+            var actual = ParkingService.ShortStayCalculate(startDate, endDate);
 
             // Assert
             Assert.Equal(expected, actual);
@@ -123,7 +114,7 @@ namespace ParkingChargeCalculator.Tests
             var endDate = new DateTime(2021, 09, 06+days, 00, 00, 00);
 
             // Act
-            var actual = _shortStayParking.Calculate(startDate, endDate);
+            var actual = ParkingService.ShortStayCalculate(startDate, endDate);
 
             // Assert
             Assert.Equal(expected, actual);

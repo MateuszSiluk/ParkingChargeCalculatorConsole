@@ -1,11 +1,10 @@
 ﻿using ParkingChargeCalculator.Data;
-using ParkingChargeCalculator.Interfaces;
 
 namespace ParkingChargeCalculator
 {
-    public class FreeParkingCheck : IFreeParkingCheck
+    public static class FreeParkingCheck
     {
-        public bool IsNotFreeParking(DateTime dateTime)
+        public static bool IsNotFreeParking(DateTime dateTime)
         {
             if (FreeParkingDaysTime.days.Contains(dateTime.DayOfWeek.ToString()))
             {
