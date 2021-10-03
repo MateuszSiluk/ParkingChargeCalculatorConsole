@@ -59,13 +59,12 @@ namespace ParkingChargeCalculator.Tests
         [InlineData(18, 20, 0)]
         [InlineData(21, 23, 0)]
         [InlineData(04, 06, 0)]
-        public void Short_Stay_Should_Cost_0_On_Return_Outside_Charg_Hours(int hour1, int hour2, decimal exp)
+        public void Short_Stay_Should_Cost_0_On_Return_Outside_Charg_Hours(int hour1, int hour2, decimal expected)
         {
             // Arrange
             var startDate = new DateTime(2021, 09, 28, hour1, 00, 0);
             var endDate = new DateTime(2021, 09, 28, hour2, 00, 0);
-            var expected = exp;
-
+            
             // Act
             var actual = _shortStayParking.Calculate(startDate, endDate);
 
@@ -77,12 +76,11 @@ namespace ParkingChargeCalculator.Tests
         [InlineData(0, 15, 0.275)]
         [InlineData (15, 30, 0.275)]
         [InlineData(30, 45, 0.275)]
-        public void Short_Stay_Should_Charge_0_275_For_15_Minutes_In_Chargabe_Hours(int minutes1, int minutes2, decimal exp)
+        public void Short_Stay_Should_Charge_0_275_For_15_Minutes_In_Chargabe_Hours(int minutes1, int minutes2, decimal expected)
         {
             // Arrange
             var startDate = new DateTime(2021, 09, 28, 10 , minutes1, 0);
             var endDate = new DateTime(2021, 09, 28, 10, minutes2 , 0);
-            var expected = exp;
 
             // Act
             var actual = _shortStayParking.Calculate(startDate, endDate);
@@ -94,12 +92,11 @@ namespace ParkingChargeCalculator.Tests
         [Theory]
         [InlineData(17, 00, 20, 30, 1.10)]
         [InlineData(04, 00, 09, 00, 1.10)]
-        public void Short_Stay_Should_Charge_Only_From_8PM_To_6PM(int hours1, int minutes1, int hours2, int minutes2, decimal exp)
+        public void Short_Stay_Should_Charge_Only_From_8PM_To_6PM(int hours1, int minutes1, int hours2, int minutes2, decimal expected)
         {
             // Arrange
             var startDate = new DateTime(2021, 09, 28, hours1, minutes1, 0);
             var endDate = new DateTime(2021, 09, 28, hours2, minutes2, 0);
-            var expected = exp;
 
             // Act
             var actual = _shortStayParking.Calculate(startDate, endDate);
@@ -119,12 +116,11 @@ namespace ParkingChargeCalculator.Tests
         [InlineData(8, 66.0)]
         [InlineData(9, 77.0)]
         [InlineData(10, 88.0)]
-        public void Short_Stay_Charge_Calculate_For_10_Days(int days, decimal exp)
+        public void Short_Stay_Charge_Calculate_For_10_Days(int days, decimal expected)
         {
             // Arrange
             var startDate = new DateTime(2021, 09, 06, 00, 00, 0);
             var endDate = new DateTime(2021, 09, 06+days, 00, 00, 00);
-            var expected = exp;
 
             // Act
             var actual = _shortStayParking.Calculate(startDate, endDate);

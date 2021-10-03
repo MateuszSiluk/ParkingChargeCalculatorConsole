@@ -34,12 +34,11 @@ namespace ParkingChargeCalculator.Tests
         [InlineData(9,40, 7.50)]
         [InlineData(22,45, 7.50)]
         [InlineData(23, 59, 7.50)]
-        public void Long_Stay_Should_Cost_7_50_No_Matter_For_How_Long_During_24H(int hours, int minutes, decimal exp)
+        public void Long_Stay_Should_Cost_7_50_No_Matter_For_How_Long_During_24H(int hours, int minutes, decimal expected)
         {
             //Arrange
             var startDate = new DateTime(2021, 09, 1, 8, 20, 0);
             var endDate = new DateTime(2021, 09, 1 , hours, minutes ,0 );
-            var expected = exp;
             //Act
             var actual = _longStayParking.Calculate(startDate, endDate);
 
