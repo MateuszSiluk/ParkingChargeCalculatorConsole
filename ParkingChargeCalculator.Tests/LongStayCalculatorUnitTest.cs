@@ -5,39 +5,34 @@ namespace ParkingChargeCalculator.Tests
 {
     public class LongStayCalculatorUnitTest
     {
-        [Theory]
-        [InlineData(1,7.50)]
-        [InlineData(2, 15)]
-        [InlineData(20, 150)]
-        public void Long_Stay_Should_Cost_7_50_Per_Each_24Hours(int day, decimal exp)
+        public static readonly object[][] CorrectData =
         {
-            //Arrange
-            var startDate = new DateTime(2021, 09, 1, 00, 00, 0);
-            var endDate = new DateTime(2021, 09, 1 * day , 23, 59, 59);
-            var expected = exp;
-            //Act
-            var actual = ParkingService.LongStayCalculate(startDate, endDate);
 
-            //Assert
+            //Long_Stay_Should_Cost_7_50_Per_Each_24Hours
+            new object[] {  new DateTime(2021, 09, 25, 00, 00, 00), new DateTime(2021, 09, 25, 00, 00, 00), 7.5m },
+
+            //Long_Stay_Should_Cost_7_50_Per_2_hours
+            new object[] {  new DateTime(2021, 09, 25, 00, 00, 00), new DateTime(2021, 09, 25, 02, 00, 00), 7.5m },
+
+            //Long_Stay_Should_Cost_7_50_Per_7_hours
+            new object[] {  new DateTime(2021, 09, 25, 00, 00, 00), new DateTime(2021, 09, 25, 07, 00, 00), 7.5m },
+
+            //Long_Stay_Should_Cost_15_00_Per_25_hours
+            new object[] {  new DateTime(2021, 09, 25, 00, 00, 00), new DateTime(2021, 09, 26, 01, 00, 00), 15.0m },
+
+            };
+
+
+        [Theory]
+        [MemberData(nameof(CorrectData))]
+        public void Long_Stay_Unit_Tests(DateTime value1, DateTime value2, decimal expected)
+        {
+            // Act
+            var actual = ParkingService.LongStayCalculate(value1, value2);
+            // Assert
             Assert.Equal(expected, actual);
         }
 
-
-        [Theory]
-        [InlineData(9,40, 7.50)]
-        [InlineData(22,45, 7.50)]
-        [InlineData(23, 59, 7.50)]
-        public void Long_Stay_Should_Cost_7_50_No_Matter_For_How_Long_During_24H(int hours, int minutes, decimal expected)
-        {
-            //Arrange
-            var startDate = new DateTime(2021, 09, 1, 8, 20, 0);
-            var endDate = new DateTime(2021, 09, 1 , hours, minutes ,0 );
-            //Act
-            var actual = ParkingService.LongStayCalculate(startDate, endDate);
-
-            //Assert
-            Assert.Equal(expected, actual);
-        }
 
         [Theory]
         [InlineData(5, 2)]
