@@ -11,9 +11,9 @@ namespace ParkingChargeCalculator
     {
         public static decimal ShortStayCalculate(DateTime start, DateTime end)
         {
-            if (start > end)
+            if (start >= end)
             {
-                throw new ArgumentException(String.Format($"Start date can't be earlier than end date!"));
+                throw new ArgumentException(String.Format($"Start date can't be earlier or the same as end date!"));
             }
 
             decimal totalMinutes = 0;
@@ -30,9 +30,9 @@ namespace ParkingChargeCalculator
 
         public static decimal LongStayCalculate(DateTime startDateTime, DateTime endDateTime)
         {
-            if (startDateTime > endDateTime)
+            if (startDateTime >= endDateTime)
             {
-                throw new ArgumentException(String.Format($"Start date can't be earlier than end date!"));
+                throw new ArgumentException(String.Format($"Start date can't be earlier or the same as end date!"));
             }
 
             var totalDays = ((int)(endDateTime.Date.AddDays(1) - startDateTime.Date).Days);

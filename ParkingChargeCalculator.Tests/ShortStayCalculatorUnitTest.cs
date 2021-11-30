@@ -1,7 +1,4 @@
-using Moq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Xunit;
 
 namespace ParkingChargeCalculator.Tests
@@ -26,13 +23,13 @@ namespace ParkingChargeCalculator.Tests
 
             //Short_Stay_Charge_Calculate_For_10_Days
             new object[] {  new DateTime(2021, 09, 06, 00, 00, 0), new DateTime(2021, 09, 16, 0, 0, 0), 88.0m }
-            
+
             };
-        
 
 
 
-        [Theory] 
+
+        [Theory]
         [MemberData(nameof(CorrectData))]
         public void Short_Stay_Unit_Tests(DateTime value1, DateTime value2, decimal expected)
         {
@@ -43,23 +40,33 @@ namespace ParkingChargeCalculator.Tests
             Assert.Equal(expected, actual);
         }
 
-        [Theory]
-        [InlineData(5,2)]
-        public void Calculate_should_throw_exception_when_start_date_is_before_end_date(int day1, int day2)
-        {
-            // Arrange
-            var startDate = new DateTime(2021, 09, day1, 00, 00, 0);
-            var endDate = new DateTime(2021, 09, day2, 00, 00, 00);
 
+
+
+
+
+
+        public static readonly object[][] CorrectDataExpectedException =
+        {
+
+            new object[] {  new DateTime(2021, 09, 25, 00, 00, 00), new DateTime(2021, 09, 25, 00, 00, 00) },
+            new object[] {  new DateTime(2021, 09, 27, 00, 00, 00), new DateTime(2021, 09, 25, 00, 00, 00) },
+        };
+
+
+        [Theory]
+        [MemberData(nameof(CorrectDataExpectedException))]
+        public void Calculate_should_throw_exception_when_start_date_is_before_end_date(DateTime startDate, DateTime endDate)
+        {
             // Act
-            Action actual= () => ParkingService.ShortStayCalculate(startDate, endDate);
+            Action actual = () => ParkingService.ShortStayCalculate(startDate, endDate);
 
             // Assert
             ArgumentException exception = Assert.Throws<ArgumentException>(actual);
-            Assert.Equal("Start date can't be earlier than end date!", exception.Message);
+            Assert.Equal("Start date can't be earlier or the same as end date!", exception.Message);
 
         }
 
-        
+
     }
 }
