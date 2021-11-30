@@ -25,7 +25,7 @@ namespace ParkingChargeCalculator
                     totalMinutes++;
                 }
             }
-            return totalMinutes / 60 * PriceList.ShortStayPerHour;
+            return totalMinutes / 60 * PriceList.SHORT_STAY_PER_HOUR;
         }
 
         public static decimal LongStayCalculate(DateTime startDateTime, DateTime endDateTime)
@@ -36,7 +36,7 @@ namespace ParkingChargeCalculator
             }
 
             var totalDays = ((int)(endDateTime.AddDays(1) - startDateTime).Days);
-            var totalPrice = (decimal)totalDays * PriceList.LongStayPerDay;
+            var totalPrice = (decimal)totalDays * PriceList.LONG_STAY_PER_DAY;
 
             return totalPrice;
         }

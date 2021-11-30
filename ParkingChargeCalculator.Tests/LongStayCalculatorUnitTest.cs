@@ -27,10 +27,10 @@ namespace ParkingChargeCalculator.Tests
 
         [Theory]
         [MemberData(nameof(CorrectData))]
-        public void Long_Stay_Unit_Tests(DateTime value1, DateTime value2, decimal expected)
+        public void Long_Stay_Unit_Tests(DateTime startDate, DateTime endDate, decimal expected)
         {
             // Act
-            var actual = ParkingService.LongStayCalculate(value1, value2);
+            var actual = ParkingService.LongStayCalculate(startDate, endDate);
             // Assert
             Assert.Equal(expected, actual);
         }

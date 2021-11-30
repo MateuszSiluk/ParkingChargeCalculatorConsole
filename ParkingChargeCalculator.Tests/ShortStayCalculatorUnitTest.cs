@@ -36,11 +36,11 @@ namespace ParkingChargeCalculator.Tests
 
         [Theory]
         [MemberData(nameof(CorrectData))]
-        public void Short_Stay_Unit_Tests(DateTime value1, DateTime value2, decimal expected)
+        public void Short_Stay_Unit_Tests(DateTime startDate, DateTime endDate, decimal expected)
         {
 
             // Act
-            var actual = ParkingService.ShortStayCalculate(value1, value2);
+            var actual = ParkingService.ShortStayCalculate(startDate, endDate);
             // Assert
             Assert.Equal(expected, actual);
         }
