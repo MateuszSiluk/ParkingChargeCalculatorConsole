@@ -9,12 +9,15 @@ namespace ParkingChargeCalculator.Tests
         {
 
             //Long_Stay_Should_Cost_7_50_Per_2_hours
+            //Saturday 00:00:00 to Saturday 02:00:00
             new object[] {  new DateTime(2021, 09, 25, 00, 00, 00), new DateTime(2021, 09, 25, 02, 00, 00), 7.5m },
 
             //Long_Stay_Should_Cost_7_50_Per_7_hours
+            //Saturday 00:00:00 to Saturday 07:00:00
             new object[] {  new DateTime(2021, 09, 25, 00, 00, 00), new DateTime(2021, 09, 25, 07, 00, 00), 7.5m },
 
             //Long_Stay_Should_Cost_15_00_Per_25_hours
+            //Saturday 00:00:00 to Sunday 02:00:00
             new object[] {  new DateTime(2021, 09, 25, 00, 00, 00), new DateTime(2021, 09, 26, 01, 00, 00), 15.0m },
 
             };
@@ -37,7 +40,10 @@ namespace ParkingChargeCalculator.Tests
         {
 
             //Long_Stay_Should_Throw_Exception_when_startDate_is_greater_than_endDate
+            //Saturday 00:00:00 to Saturday 00:00:00
             new object[] {  new DateTime(2021, 09, 25, 00, 00, 00), new DateTime(2021, 09, 25, 00, 00, 00) },
+
+            //(27-09-2021) Monday 00:00:00 to (25-09-2021) Saturday 00:00:00
             new object[] {  new DateTime(2021, 09, 27, 00, 00, 00), new DateTime(2021, 09, 25, 00, 00, 00) },
 
             };
@@ -46,14 +52,12 @@ namespace ParkingChargeCalculator.Tests
         [MemberData(nameof(CorrectDataExpectedException))]
         public void Calculate_should_throw_exception_when_start_date_is_before_end_date(DateTime startDate, DateTime endDate)
         {
-            
             // Act
             Action actual = () => ParkingService.LongStayCalculate(startDate, endDate);
 
             // Assert
             ArgumentException exception = Assert.Throws<ArgumentException>(actual);
             Assert.Equal("Start date can't be earlier or the same as end date!", exception.Message);
-
         }
     }
 }
