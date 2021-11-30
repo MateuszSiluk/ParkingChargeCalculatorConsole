@@ -35,7 +35,7 @@ namespace ParkingChargeCalculator
                 throw new ArgumentException(String.Format($"Start date can't be earlier or the same as end date!"));
             }
 
-            var totalDays = ((int)(endDateTime.Date.AddDays(1) - startDateTime.Date).Days);
+            var totalDays = ((int)(endDateTime.AddDays(1) - startDateTime).Days);
             var totalPrice = (decimal)totalDays * PriceList.LongStayPerDay;
 
             return totalPrice;

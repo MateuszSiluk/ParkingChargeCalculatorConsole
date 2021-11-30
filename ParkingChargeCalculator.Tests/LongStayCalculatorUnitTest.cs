@@ -20,6 +20,8 @@ namespace ParkingChargeCalculator.Tests
             //Saturday 00:00:00 to Sunday 02:00:00
             new object[] {  new DateTime(2021, 09, 25, 00, 00, 00), new DateTime(2021, 09, 26, 01, 00, 00), 15.0m },
 
+            // Thursday 7:50:00 to Saturday 05:20:00
+            new object[] {  DateTime.Parse("07/09/2017 07:50:00"), DateTime.Parse("09/09/2017 05:20:00"),  15 },
             };
 
 
